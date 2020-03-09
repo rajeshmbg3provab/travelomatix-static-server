@@ -1,0 +1,10 @@
+{
+    "type": "mysql",
+    "host": "localhost",
+    "port": 3306,
+    "database": "travelomatix",
+    "username": "root",
+    "password": "root",
+    "autoLoadEntities": true,
+    "synchronize": true
+}
