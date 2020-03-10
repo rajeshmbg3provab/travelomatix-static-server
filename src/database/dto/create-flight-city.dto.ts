@@ -1,4 +1,4 @@
-export class createFlightCityDto {
+export class CreateFlightCityDto {
     AirportCode: string;
     AirportName: string;
     AirportCity: string;

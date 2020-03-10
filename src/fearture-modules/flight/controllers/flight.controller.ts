@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Query, Body } from '@nestjs/common';
+import { Controller, Post, Query, Body } from '@nestjs/common';
 import { Conf as conf } from 'src/config/conf';
 import { BaseFlightController } from '../controllers';
 import {
@@ -6,8 +6,9 @@ import {
     FlightCabinClassService,
     FlightAirlineListService,
 } from '../services';
-import { createFlightCityDto } from 'src/database/dto/create-flight-city.dto';
+import { CreateFlightCityDto } from 'src/database/dto/create-flight-city.dto';
 import { FlightCitiesService } from 'src/database/services/flight-cities.service';
+import { FlightCities } from 'src/database/entity/flight-cities.entity';
 
 
 @Controller('flight')
@@ -23,21 +24,22 @@ export class FlightController extends BaseFlightController {
     }
 
     @Post('createCity')
-    async create(@Body() createCityDto: createFlightCityDto): Promise<any> {
+    async create(@Body() createCityDto: CreateFlightCityDto): Promise<any> {
         return await this.flightCitiesService.create(createCityDto);
     }
 
-    @Post('cities')
-    async findAll(@Query('city') city: string): Promise<any> {
-        const reslut = await this.flightCitiesService.findAll(city);
+    @Post('airportList')
+    async findAll(@Query() AirportCode: any): Promise<any> {
+        const where: FlightCities = AirportCode || {status: true};
+        const reslut = await this.flightCitiesService.findAll({where});
         return conf.res.ok(reslut);
     }
 
-    @Post('airportList')
-    async findAirportsList(@Query('city') city: string): Promise<any> {
-        const reslut = await this.airportsService.findAirportsList();
-        return conf.res.ok(reslut);
-    }
+    // @Post('airportList')
+    // async findAirportsList(): Promise<any> {
+    //     const reslut = await this.airportsService.findAirportsList();
+    //     return conf.res.ok(reslut);
+    // }
 
     @Post('cabinClassList')
     async findCabinClassList(): Promise<any> {
