@@ -36,7 +36,7 @@ export class HomeController extends BaseHomeController {
         return conf.res.ok(result);
     }
 
-    @Get('whyChooseUs')
+    @Get('allCustomerOffers')
     async findAllCustomerOffers(): Promise<any> {
         const result = await this.whyUsService.findAll();
         return conf.res.ok(result);

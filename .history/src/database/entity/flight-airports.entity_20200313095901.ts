@@ -3,19 +3,19 @@ import { BaseEntity } from "./base.entity";
 
 @Entity()
 export class FlightAirportList extends BaseEntity {
-    @Column({type: 'varchar', name: 'airport_code'})
+    @Column({name: 'airport_code'})
     AirportCode: string;
 
-    @Column({type: 'varchar', name: 'airport_name'})
+    @Column({name: 'airport_name'})
     AirportName: string;
 
-    @Column({type: 'varchar', name: 'airport_city'})
+    @Column({name: 'airport_city'})
     AirportCity: string;
 
-    @Column({type: 'varchar', name: 'priority'})
+    @Column({name: 'priority'})
     Priority: string;
 
-    @Column({type: 'varchar', name: 'sub_priority'})
+    @Column({name: 'sub_priority'})
     SubPriority: string;
-
+    
 }

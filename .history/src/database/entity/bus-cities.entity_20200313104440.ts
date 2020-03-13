@@ -5,13 +5,13 @@ import { BaseEntity } from "./base.entity";
 export class BusCities extends BaseEntity {
     @Column({type: 'varchar', name: 'name'})
     CityName: string;
-
+    
     // @Column({type: 'varchar', name: 'origin'})
     // Origin: string;
-
+    
     @Column({type: 'int', name: 'station_id'})
     StationId: number;
-
+    
     @Column({type: 'varchar', name: 'state'})
     State: string;
 }

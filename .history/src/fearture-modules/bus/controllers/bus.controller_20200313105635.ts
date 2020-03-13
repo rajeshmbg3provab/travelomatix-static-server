@@ -16,8 +16,8 @@ export class BusController extends BaseBusController {
     async findBusCities(@Query('City') city: string): Promise<any> {
         console.log(city);
         const where = [
-            { CityName: Like(`${city}%`) },
-            { State: Like(`${city}%`) },
+            { CityName: Like(`${city}%`)},
+            { State: Like(`${city}%`)},
         ];
         const result = await this.busCitiesService.findAll({where});
         return conf.res.ok(result);
