@@ -31,15 +31,15 @@ export class FlightController extends BaseFlightController {
     @Post('service/airportList')
     async findAllAirport(@Query() code: any): Promise<any> {
         const where = [
-            {AirportCode: Like(`${code.City}%`) },
-            { AirportName: Like(`${code.City}%`) },
+            {AirportCode: Like(`${code.AirportCode}%`) },
+            { AirportName: Like(`${code.AirportCode}%`) },
         ]; // for OR operator
         // {
         //         AirportCode: Like(`${code.AirportCode}%`),
         //         AirportName: Like(`${code.AirportCode}%`),
         // }; // for AND operator
-        const order = { Priority: 'ASC'};
-        const reslut = await this.citiesService.findAll({ where, order });
+        // const order = { Priority: 'ASC'};
+        const reslut = await this.citiesService.findAll({ where });
         return conf.res.ok(reslut);
     }
 

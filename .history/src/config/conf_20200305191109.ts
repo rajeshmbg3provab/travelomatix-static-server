@@ -10,51 +10,51 @@ export class Conf {
     static res = {
         ok: (data: any, statusCode?: number|string, msg?: string) => {
             return {
-                Status: statusCode || 1 || 200,
-                Message: msg || "OK",
-                Data: data || null
+                statusCode: statusCode || 200,
+                msg: msg || "OK",
+                data: data || null
             }
         },
         forbidden: (data: any, statusCode?: number|string, msg?: string) => {
             return {
-                Status: statusCode || 0 || 403,
-                Message: msg || 'Forbidden',
-                Data: data || null
+                statusCode: statusCode || 403,
+                msg: msg || 'Forbidden',
+                data: data || null
             }
         },
         noData: (data: any, statusCode?: number|string, msg?: string) => {
             return {
-                Status: statusCode || 0 || 404,
-                Message: msg || 'No Data Found',
+                statusCode: statusCode || 404,
+                msg: msg || 'No Data Found',
                 data: data || null
             }
         },
         invalid: (data: any, statusCode?: number|string, msg?: string) => {
             return {
-                Status: statusCode || 0 || 400,
-                Message: msg || 'Bad Request',
-                Data: data || null
+                statusCode: statusCode || 400,
+                msg: msg || 'Bad Request',
+                data: data || null
             }
         },
         failure: (data: any, statusCode?: number|string, msg?: string) => {
             return {
-                Status: statusCode || 0 || 402,
-                Message: msg || 'Request Failed',
-                Data: data || null
+                statusCode: statusCode || 402,
+                msg: msg || 'Request Failed',
+                data: data || null
             }
         },
         conflict: (data: any, statusCode?: number|string, msg?: string) => {
             return {
-                Status: statusCode || 0 || 409,
-                Message: msg || 'Conflict : Data already exists',
-                Data: data || null
+                statusCode: statusCode || 409,
+                msg: msg || 'Conflict : Data already exists',
+                data: data || null
             }
         },
         serverError: (data: any, statusCode?: number|string, msg?: string) => {
             return {
-                Status: statusCode || 0 || 500,
-                Message: msg || 'Internal Server Error',
-                Data: data || null
+                statusCode: statusCode || 500,
+                msg: msg || 'Internal Server Error',
+                data: data || null
             }
         }
     }

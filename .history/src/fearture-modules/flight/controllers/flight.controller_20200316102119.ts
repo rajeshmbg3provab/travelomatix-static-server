@@ -31,8 +31,8 @@ export class FlightController extends BaseFlightController {
     @Post('service/airportList')
     async findAllAirport(@Query() code: any): Promise<any> {
         const where = [
-            {AirportCode: Like(`${code.City}%`) },
-            { AirportName: Like(`${code.City}%`) },
+            {AirportCode: Like(`${code.AirportCode}%`) },
+            { AirportName: Like(`${code.AirportCode}%`) },
         ]; // for OR operator
         // {
         //         AirportCode: Like(`${code.AirportCode}%`),
