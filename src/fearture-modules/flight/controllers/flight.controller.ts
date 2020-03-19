@@ -30,7 +30,19 @@ export class FlightController extends BaseFlightController {
 
     @Post('service/airportList')
     async findAllAirport(@Query() code: any): Promise<any> {
-        const where = { AirportCity: Like(`${code.City}%`) }; 
+        const len = code.City.length;
+        const where =
+            len === 3
+            ? [ { AirportCode: Like(`${code.City}%`) },
+              { AirportCity: Like(`${code.City}%`) } ]
+            : len > 3
+            ? { AirportCity: Like(`${code.City}%`) }
+            : [
+                { AirportCity: Like(`${code.City}%`) },
+                { AirportCode: Like(`${code.City}%`) },
+                { AirportName: Like(`${code.City}%`) },
+            ]; // for OR operator
+
         // [
         //     {AirportCity: Like(`${code.City}%`) },
         //     {AirportCode: Like(`${code.City}%`) },
@@ -40,16 +52,16 @@ export class FlightController extends BaseFlightController {
         //         AirportCode: Like(`${code.AirportCode}%`),
         //         AirportName: Like(`${code.AirportCode}%`),
         // }; // for AND operator
-        const order = { Priority: 'ASC'};
+        const order = { Priority: 'ASC' };
         const reslut = await this.citiesService.findAll({ where, order });
         return conf.res.ok(reslut);
     }
 
     @Post('cabinClassList')
     async findAllCabins(): Promise<any> {
-        const order = {Name: 'ASC'}
-        const result = await this.cabinClassService.findAll({order});
-        return conf.res.ok(result); 
+        const order = { Name: 'ASC' }
+        const result = await this.cabinClassService.findAll({ order });
+        return conf.res.ok(result);
         //result ? conf.res.ok(result) : conf.res.noData(result);
     }
 
